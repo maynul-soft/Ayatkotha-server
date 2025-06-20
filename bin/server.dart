@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 import 'package:shelf_router/shelf_router.dart';
@@ -34,6 +33,6 @@ void main() async {
       .addMiddleware(logRequests())
       .addHandler(router);
 
-  final server = await io.serve(handler, 'localhost', 8080);
+  final server = await io.serve(handler, InternetAddress.anyIPv4, 8080);
   print('✅ Server started on http://${server.address.host}:${server.port}');
 }
